@@ -76,6 +76,11 @@ public class ProjectTaskController : ControllerBase
     [HttpPut("{taskId:int}")]
     public async Task<IActionResult> UpdateTaskByIdAsync(int taskId, ProjectTaskDTO taskDto)
     {
+        if (taskId != taskDto.Id)
+        {
+            return BadRequest();
+        }
+        
         try
         {
             await _taskService.UpdateProjectTaskByIdAsync(taskId, taskDto);
