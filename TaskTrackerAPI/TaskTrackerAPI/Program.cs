@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using TaskTrackerAPI.DataContext;
 using TaskTrackerAPI.Repositories.Implementation;
@@ -9,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); //for enum values (e.g. Project and Project Task Statuses)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
