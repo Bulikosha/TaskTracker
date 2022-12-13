@@ -1,14 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using TaskTrackerAPI.DataContext;
+using TaskTrackerAPI.Repositories.Implementation;
+using TaskTrackerAPI.Repositories.Interfaces;
+using TaskTrackerAPI.Services.Implementation;
+using TaskTrackerAPI.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Declaring dependancies
+builder.Services.AddScoped<IProjectRepository, ProjectRepository > ();
+builder.Services.AddScoped<IProjectTaskRepository, ProjectTaskRepository > ();
+builder.Services.AddScoped<IProjectService, ProjectService > ();
+builder.Services.AddScoped<IProjectTaskService, ProjectTaskService > ();
 
 builder.Services.AddDbContext<Context>(opts =>
 {

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using TaskTrackerAPI.Enums;
 
 namespace TaskTrackerAPI.Models;
@@ -12,5 +13,6 @@ public class Project
     public int Priority { get; set; }
     
     //Collection property for association purposes (with ProjectTask)
+    [JsonIgnore]
     public ICollection<ProjectTask> Tasks { get; set; }
 }
