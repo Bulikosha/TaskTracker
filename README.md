@@ -5,7 +5,8 @@ CRUD operations are available.
 Related end points can be traced with Swagger.
 App is based on code first approach.
 
-# Technologies used (all below frameworks, libraries and packages are publicly available):
+# Technologies used 
+(all below frameworks, libraries and packages are publicly available):
 - Microsoft.EntityFrameworkCore 6.0.10;
 - PostgreSQL server;
 - Microsoft.EntityFrameworkCore.Tools 6.0.10;
@@ -22,7 +23,7 @@ For unit testing and mocking purposes:
 
 # To run application
 - Configure Connection String in appsettings.json file 
-- Dependencies indicated below (section "Technologies used") should be installed
+- Dependencies indicated above (section "Technologies used") should be installed
 - Restore migrations, if needed
 
 # Migrations:
