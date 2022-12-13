@@ -14,6 +14,9 @@
 - Swashbuckle.AspNetCore.Swagger 6.2.3;
 - Swashbuckle.AspNetCore.SwaggerGen 6.2.3;
 - Swashbuckle.AspNetCore.SwaggerUI 6.2.3;
+- For unit tests and mocking purposes:
+	- xUnit.Net 2.4.1
+	- Moq 4.18.3
 
 # Migrations:
 1. To add migration use command: dotnet ef migrations add [name]
