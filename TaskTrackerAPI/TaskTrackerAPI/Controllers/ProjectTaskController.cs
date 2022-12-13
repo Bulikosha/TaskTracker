@@ -33,41 +33,44 @@ public class ProjectTaskController : ControllerBase
     [HttpGet()]
     public async Task<ActionResult<List<ProjectTask>>> GetAllTasksAsync()
     {
-        var tasks = await _taskService.GetAllProjectTasksAsync();
-        
-        if (tasks == null)
+        try
         {
-            return NotFound();
+            var tasks = await _taskService.GetAllProjectTasksAsync();
+            return tasks;
         }
-
-        return tasks;
-        
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet("{projectId:int}/tasks")]
     public async Task<ActionResult<List<ProjectTask>>> GetAllTasksByProjectIdAsync(int projectId)
     {
-        var projects = await _taskService.GetAllProjectTasksByProjectIdAsync(projectId);
-
-        if (projects == null)
+        try
         {
-            return NotFound();
+            var projects = await _taskService.GetAllProjectTasksByProjectIdAsync(projectId);
+            
+            return projects;
         }
-
-        return projects;
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet("{taskId:int}")]
     public async Task<ActionResult<ProjectTask>> GetTaskByIdAsync(int taskId)
     {
-        var task = await _taskService.GetProjectTaskByIdAsync(taskId);
-        
-        if (task == null)
+        try
         {
-            BadRequest();
+            var task = await _taskService.GetProjectTaskByIdAsync(taskId);
+            return task;
         }
-        
-        return task;
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPut("{taskId:int}")]

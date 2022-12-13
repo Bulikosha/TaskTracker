@@ -33,27 +33,30 @@ public class ProjectController : ControllerBase
     [HttpGet()]
     public async Task<ActionResult<List<Project>>> GetAllProjectsAsync()
     {
-        var projects = await _projectService.GetAllProjectsAsync();
-
-        if (projects == null)
+        try
         {
-            return NotFound();
+            var projects = await _projectService.GetAllProjectsAsync();
+            return projects;
         }
-
-        return projects;
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet("{projectId:int}")]
     public async Task<ActionResult<Project>> GetProjectByIdAsync(int projectId)
     {
-        var project = await _projectService.GetProjectByIdAsync(projectId);
-        
-        if (project == null)
+        try
         {
-                NotFound();
+            var projects = await _projectService.GetProjectByIdAsync(projectId);
+            
+            return projects;
         }
-        
-        return project;
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPut("{projectId:int}")]

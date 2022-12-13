@@ -41,7 +41,6 @@ public class ProjectTaskRepository : IProjectTaskRepository
 
     public async Task<List<ProjectTask>> GetAllProjectTasksByProjectIdAsync(int projectId)
     {
-        // var project = await _dbContext.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
         var tasks = await _dbContext.Tasks.Where(t => t.ProjectId == projectId).ToListAsync();
         return tasks;
     }
@@ -54,18 +53,18 @@ public class ProjectTaskRepository : IProjectTaskRepository
 
     public async Task<ProjectTask> UpdateProjectTaskByIdAsync(int id, ProjectTaskDTO taskDTO)
     {
-        var newTask = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == id);
+        var taskToUpdate = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == id);
 
-        if (newTask == null) throw new ArgumentNullException(nameof(newTask));
+        if (taskToUpdate == null) throw new ArgumentNullException(nameof(taskToUpdate));
         
-        newTask.Name = taskDTO.Name;
-        newTask.Priority = taskDTO.Priority;
-        newTask.Status = taskDTO.Status;
-        newTask.Description = taskDTO.Description;
-        newTask.ProjectId = taskDTO.ProjectId;
+        taskToUpdate.Name = taskDTO.Name;
+        taskToUpdate.Priority = taskDTO.Priority;
+        taskToUpdate.Status = taskDTO.Status;
+        taskToUpdate.Description = taskDTO.Description;
+        taskToUpdate.ProjectId = taskDTO.ProjectId;
         await _dbContext.SaveChangesAsync();
             
-        return newTask;
+        return taskToUpdate;
     }
 
     public async Task DeleteProjectTaskByIdAsync(int id)

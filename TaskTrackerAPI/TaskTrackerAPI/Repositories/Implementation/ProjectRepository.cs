@@ -36,18 +36,18 @@ public class ProjectRepository : IProjectRepository
 
     public async Task<Project> UpdateProjectByIdAsync(int id, ProjectDTO projectDTO)
     {
-        var newProject = await _dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
+        var projectToBeUpdated = await _dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
 
-        if (newProject == null) throw new ArgumentNullException(nameof(newProject));
+        if (projectToBeUpdated == null) throw new ArgumentNullException(nameof(projectToBeUpdated));
         
-        newProject.Name = projectDTO.Name;
-        newProject.Priority = projectDTO.Priority;
-        newProject.Status = projectDTO.Status;
-        newProject.StartDate = projectDTO.StartDate;
-        newProject.CompletionDate = projectDTO.CompletionDate;
+        projectToBeUpdated.Name = projectDTO.Name;
+        projectToBeUpdated.Priority = projectDTO.Priority;
+        projectToBeUpdated.Status = projectDTO.Status;
+        projectToBeUpdated.StartDate = projectDTO.StartDate;
+        projectToBeUpdated.CompletionDate = projectDTO.CompletionDate;
         await _dbContext.SaveChangesAsync();
             
-        return newProject;
+        return projectToBeUpdated;
     }
 
     public async Task DeleteProjectByIdAsync(int id)
