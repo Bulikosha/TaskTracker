@@ -76,7 +76,7 @@ public class ProjectTaskController : ControllerBase
     [HttpPut("{taskId:int}")]
     public async Task<IActionResult> UpdateTaskByIdAsync(int taskId, ProjectTaskDTO taskDto)
     {
-        if (taskId != taskDto.Id)
+        if (taskId != taskDto.Id) //Check if id and task id are equal
         {
             return BadRequest();
         }

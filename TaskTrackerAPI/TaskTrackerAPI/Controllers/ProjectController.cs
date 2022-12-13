@@ -62,7 +62,7 @@ public class ProjectController : ControllerBase
     [HttpPut("{projectId:int}")]
     public async Task<IActionResult> UpdateProjectByIdAsync(int projectId, ProjectDTO projectDTO)
     {
-        if (projectId != projectDTO.Id)
+        if (projectId != projectDTO.Id) //Check if id and project id are equal
         {
             return BadRequest();
         }

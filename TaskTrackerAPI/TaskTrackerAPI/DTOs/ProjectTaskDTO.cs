@@ -2,6 +2,9 @@
 
 namespace TaskTrackerAPI.DTOs;
 
+/*
+ * We use DTO objects to interact with the client. Then DTO objects are mannually mapped to our entities. For this particular project automapper was not used.
+ */
 public class ProjectTaskDTO
 {
     public int Id { get; set; }
